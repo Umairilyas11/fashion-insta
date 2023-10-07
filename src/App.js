@@ -5,6 +5,8 @@ import Blog from "./components/Blog";
 import Imgcollege from "./components/Imgcollege";
 import Shop from "./components/Shop";
 import Contactus from "./components/Contactus";
+import Joinus from "./components/Joinus";
+// import ContactForm from "./Contactform";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Imgcollege />
         <Shop />
         <Contactus />
+        {/* <ContactForm /> */}
+        <Joinus />
       </main>
     </>
   );

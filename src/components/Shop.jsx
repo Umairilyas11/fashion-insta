@@ -2,7 +2,7 @@ import React from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid from "@mui/material/Grid";
 import Card from "react-bootstrap/Card";
 import { Typography } from "@mui/material";
 import Button from "react-bootstrap/Button";
@@ -23,16 +23,22 @@ const useStyles = makeStyles((theme) => ({
     padding: "5px",
     borderRadius: "15px",
     transform: "rotate(-5deg)",
+    justifyContent: "center",
+    alignItems: "center",
   },
   Img: {
     objectFit: "cover",
     borderRadius: "15px",
     transform: "rotate(10deg)",
+    justifyContent: "center",
+    alignItems: "center",
   },
   Title: {
     fontFamily: "Inria Serif",
     fontWeight: "bold",
     paddingTop: "2rem",
+    justifyContent: "center",
+    alignItems: "center",
   },
   Card: {
     width: "20rem",
@@ -41,22 +47,29 @@ const useStyles = makeStyles((theme) => ({
     border: "none",
     fontFamily: "Inria Serif",
     fontWeight: "bold",
+    justifyContent: "center",
+    alignItems: "center",
   },
 }));
 
 const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
   textAlign: "center",
-  color: theme.palette.text.secondary,
   backgroundColor: "transparent",
   boxShadow: "none",
+  justifyContent: "center",
+  alignItems: "center",
+  paddingBottom: "5rem",
 }));
 
 function Shop() {
   const classes = useStyles();
   return (
-    <Box sx={{ flexGrow: 1, paddingTop: "10rem" }}>
+    <Box
+      sx={{
+        flexGrow: 1,
+        paddingTop: "10rem",
+      }}
+    >
       <Grid container spacing={3}>
         <Grid xs>
           <Item></Item>
@@ -99,7 +112,7 @@ function Shop() {
                     <Card.Img
                       variant="top"
                       src="https://mindfuldesignconsulting.com/wp-content/uploads/2017/08/Dramatic-Lighting-Clothing-Store-Interior-Design.jpg"
-                      alt="123"
+                      alt="Department Store"
                       className={classes.Img}
                     />
                   </div>
@@ -124,7 +137,7 @@ function Shop() {
                     <Card.Img
                       variant="top"
                       src="https://images.rosewoodhotels.com/is/image/rwhg/03:TALL-LARGE-9-16"
-                      alt="123"
+                      alt="Boutique"
                       className={classes.Img}
                     />
                   </div>
@@ -152,7 +165,7 @@ function Shop() {
                     <Card.Img
                       variant="top"
                       src="https://images.rosewoodhotels.com/is/image/rwhg/goop%20Sundries:TALL-LARGE-9-16"
-                      alt="123"
+                      alt="Luxury Fashion Store"
                       className={classes.Img}
                     />
                   </div>

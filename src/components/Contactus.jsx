@@ -2,23 +2,20 @@ import React from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import PlaceIcon from "@mui/icons-material/Place";
-import TextField from "@mui/material/TextField";
 import { makeStyles } from "@mui/styles";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
-import Button from "@mui/material/Button";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Button from "react-bootstrap/Button";
 
 const Item = styled(Paper)(({ theme }) => ({
   paddingTop: "7rem",
-  textAlign: "center",
+  // textAlign: "center",
   color: theme.palette.text.secondary,
   backgroundColor: "transparent",
   boxShadow: "none",
@@ -30,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     flexWrap: "wrap",
     padding: "10px",
-    paddingLeft: "17rem",
+    paddingLeft: "5rem",
   },
   Icon: {
     color: "#FE5C33",
@@ -40,16 +37,35 @@ const useStyles = makeStyles((theme) => ({
     width: "50px",
     height: "50px",
     lineHeight: "45px",
+    textAlign: "center",
   },
-  radioContainer: {
-    textAlign: "left",
-    marginRight: "227px",
-    maxWidth: "227px",
+
+  form: {
+    width: "100%",
+    margin: "auto",
+    padding: "auto",
+    maxWidth: "800px",
+    display: "flexbox",
   },
-  message: {
-    display: "flex",
-    paddingTop: "10px",
-    justifyContent: "left",
+  Rowcon: {
+    marginBottom: "20px",
+  },
+  Colcon: {
+    border: "1px solid black",
+    marginRight: "20px",
+  },
+  Labelcon: {
+    paddingLeft: "12px",
+    marginTop: "5px",
+    fontFamily: "Inria Serif",
+    fontWeight: "bold",
+    color: "black",
+  },
+  Placecon: {
+    border: "none",
+    borderRadius: "0",
+    fontFamily: "Inria Serif",
+    color: "gray",
   },
 }));
 
@@ -96,7 +112,7 @@ function Contactus() {
   const classes = useStyles();
   return (
     <>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1, width: "100%" }}>
         <Grid container spacing={3}>
           <Grid xs>
             <Item></Item>
@@ -109,6 +125,7 @@ function Contactus() {
                   fontFamily: "inika",
                   color: "#000",
                   fontWeight: "bold",
+                  textAlign: "center",
                 }}
               >
                 Contact Us
@@ -122,6 +139,7 @@ function Contactus() {
                   color: "#000",
                   maxWidth: "45%",
                   margin: "auto",
+                  textAlign: "center",
                 }}
               >
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi
@@ -129,9 +147,10 @@ function Contactus() {
                 molestiae id esse totam qui minus corrupti? Consequuntur vero
                 nihil quas beatae sit laudantium.
               </Typography>
+
               <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={3}>
-                  <Grid xs={5}>
+                  <Grid xs={4}>
                     <Item>
                       {ContactData.map((contact) => {
                         return (
@@ -173,236 +192,162 @@ function Contactus() {
                   </Grid>
                   <Grid xs>
                     <Item xs={6}>
-                      <div>
-                        <Box
-                          component="form"
-                          sx={{
-                            "& .MuiTextField-root": { m: 1, width: "40ch" },
-                          }}
-                          Validate
-                          autoComplete="off"
-                        >
-                          <div style={{ display: "flex" }}>
-                            <span
-                              style={{
-                                border: "1px solid gray",
-
-                                marginRight: "10px",
-                              }}
-                            >
-                              <TextField
-                                id="standard-basic"
-                                label={
-                                  <span
-                                    style={{
-                                      fontWeight: "bold",
-                                      fontSize: "20px",
-                                    }}
-                                  >
-                                    First Name
-                                  </span>
-                                }
-                                placeholder="Enter your name here"
-                                variant="standard"
-                                InputLabelProps={{
-                                  shrink: true,
+                      <Form className={classes.form}>
+                        <Form.Group>
+                          <Row className={classes.Rowcon}>
+                            <Col className={classes.Colcon}>
+                              <Form.Label
+                                style={{
+                                  paddingLeft: "12px",
+                                  marginTop: "5px",
                                 }}
-                              />
-                            </span>
-                            <span
-                              style={{
-                                border: "1px solid gray",
-                              }}
-                            >
-                              <TextField
-                                id="standard-basic"
-                                label={
-                                  <span
-                                    style={{
-                                      fontWeight: "bold",
-                                      fontSize: "20px",
-                                    }}
-                                  >
-                                    Last Name
-                                  </span>
-                                }
+                                className={classes.Labelcon}
+                              >
+                                First Name
+                              </Form.Label>
+                              <Form.Control
                                 placeholder="Enter your name here"
-                                variant="standard"
-                                InputLabelProps={{
-                                  shrink: true,
-                                }}
+                                className={classes.Placecon}
                               />
-                            </span>
-                          </div>
-                          <div style={{ display: "flex", paddingTop: "10px" }}>
-                            <span
+                            </Col>
+                            <Col
                               style={{
-                                border: "1px solid gray",
-
-                                marginRight: "10px",
+                                border: "1px solid black",
                               }}
                             >
-                              <TextField
-                                id="standard-basic"
-                                label={
-                                  <span
-                                    style={{
-                                      fontWeight: "bold",
-                                      fontSize: "20px",
-                                    }}
-                                  >
-                                    Email Address
-                                  </span>
-                                }
+                              <Form.Label className={classes.Labelcon}>
+                                Last Name
+                              </Form.Label>
+                              <Form.Control
+                                placeholder="Enter your name here"
+                                className={classes.Placecon}
+                              />
+                            </Col>
+                          </Row>
+                        </Form.Group>
+                        <Form.Group>
+                          <Row className={classes.Rowcon}>
+                            <Col className={classes.Colcon}>
+                              <Form.Label className={classes.Labelcon}>
+                                Email Address
+                              </Form.Label>
+                              <Form.Control
                                 placeholder="Enter your email here"
-                                variant="standard"
-                                InputLabelProps={{
-                                  shrink: true,
-                                }}
+                                className={classes.Placecon}
                               />
-                            </span>
-                            <span
-                              style={{
-                                border: "1px solid gray",
-                              }}
-                            >
-                              <TextField
-                                id="standard-basic"
-                                label={
-                                  <span
-                                    style={{
-                                      fontWeight: "bold",
-                                      fontSize: "20px",
-                                    }}
-                                  >
-                                    Phone Number
-                                  </span>
-                                }
-                                placeholder="Enter your phone number here"
-                                variant="standard"
-                                InputLabelProps={{
-                                  shrink: true,
-                                }}
-                              />
-                            </span>
-                          </div>
-                          <div style={{ display: "flex", paddingTop: "10px" }}>
-                            <span
-                              style={{
-                                border: "1px solid gray",
+                            </Col>
 
-                                marginRight: "10px",
-                              }}
-                            >
-                              <TextField
-                                id="standard-basic"
-                                label={
-                                  <span
-                                    style={{
-                                      fontWeight: "bold",
-                                      fontSize: "20px",
-                                    }}
-                                  >
-                                    Country
-                                  </span>
-                                }
-                                placeholder="Enter your country here"
-                                variant="standard"
-                                InputLabelProps={{
-                                  shrink: true,
-                                }}
-                              />
-                            </span>
-                            <span
+                            <Col
                               style={{
-                                border: "1px solid gray",
+                                border: "1px solid black",
                               }}
                             >
-                              <FormControl
-                                sx={{
-                                  paddingLeft: "10px",
+                              <Form.Label className={classes.Labelcon}>
+                                Phone Number
+                              </Form.Label>
+                              <Form.Control
+                                placeholder="Enter your phone number here"
+                                style={{
+                                  textAlign: "left",
+                                }}
+                                className={classes.Placecon}
+                              />
+                            </Col>
+                          </Row>
+                        </Form.Group>
+                        <Form.Group>
+                          <Row className={classes.Rowcon}>
+                            <Col className={classes.Colcon}>
+                              <Form.Label className={classes.Labelcon}>
+                                Country
+                              </Form.Label>
+                              <Form.Control
+                                placeholder="Enter your country here"
+                                className={classes.Placecon}
+                              />
+                            </Col>
+                            <Col
+                              style={{
+                                border: "1px solid black",
+                              }}
+                            >
+                              <Form.Group
+                                className="mb-3"
+                                style={{
+                                  display: "inline",
+                                  justifyContent: "left",
+                                  alignItems: "center",
+                                  textAlign: "left",
+                                  paddingLeft: "12px",
                                 }}
                               >
-                                <div className={classes.radioContainer}>
-                                  <FormLabel
-                                    id="demo-row-radio-buttons-group-label"
-                                    sx={{
-                                      textAlign: "left",
-                                      fontWeight: "bold",
-                                      fontSize: "15px",
-                                    }}
-                                  >
-                                    Gender
-                                  </FormLabel>
-                                  <RadioGroup
-                                    row
-                                    aria-labelledby="demo-row-radio-buttons-group-label"
-                                    name="row-radio-buttons-group"
-                                  >
-                                    <FormControlLabel
-                                      value="female"
-                                      control={<Radio />}
-                                      label="Female"
-                                    />
-                                    <FormControlLabel
-                                      value="male"
-                                      control={<Radio />}
-                                      label="Male"
-                                    />
-                                  </RadioGroup>
-                                </div>
-                              </FormControl>
-                            </span>
-                          </div>
-                          <div className={classes.message}>
-                            <span
-                              style={{
-                                border: "1px solid gray",
-                                paddingRight: "432px",
-                              }}
-                            >
-                              <TextField
-                                id="standard-multiline-static"
-                                label={
-                                  <span
-                                    style={{
-                                      fontWeight: "bold",
-                                      fontSize: "20px",
-                                    }}
-                                  >
-                                    Message
-                                  </span>
-                                }
-                                placeholder="Tell us about your special requirements"
-                                multiline
-                                rows={4}
-                                variant="standard"
-                                InputLabelProps={{
-                                  shrink: true,
+                                <Form.Label sm={1} className={classes.Labelcon}>
+                                  Gender
+                                </Form.Label>
+                                <Col
+                                  sm={10}
+                                  style={{
+                                    paddingLeft: "12px",
+                                  }}
+                                >
+                                  <Form.Check
+                                    inline
+                                    type="radio"
+                                    label="first radio"
+                                    name="formHorizontalRadios"
+                                    id="formHorizontalRadios1"
+                                  />
+                                  <Form.Check
+                                    inline
+                                    type="radio"
+                                    label="second radio"
+                                    name="formHorizontalRadios"
+                                    id="formHorizontalRadios2"
+                                  />
+                                </Col>
+                              </Form.Group>
+                            </Col>
+                          </Row>
+                          <Form.Group>
+                            <Row>
+                              <Col
+                                style={{
+                                  border: "1px solid black",
                                 }}
-                              />
-                            </span>
-                          </div>
-                          <div>
-                            <Button
-                              sx={{
-                                backgroundColor: "#FE5C33",
-                                display: "flex",
-                                color: "white",
-                                "&:hover": {
-                                  background: "#D87057",
-                                },
-                                padding: "1rem 10rem 1rem 10rem",
-                                marginTop: "40px",
-                                borderRadius: "0",
-                                justifyContent: "left",
-                              }}
-                            >
-                              Submit
-                            </Button>
-                          </div>
-                        </Box>
-                      </div>
+                              >
+                                <Form.Group
+                                  className="mb-3"
+                                  controlId="exampleForm.ControlTextarea1"
+                                >
+                                  <Form.Label className={classes.Labelcon}>
+                                    Message
+                                  </Form.Label>
+                                  <Form.Control
+                                    as="textarea"
+                                    rows={3}
+                                    placeholder="Tell us about your special requirments"
+                                    style={{
+                                      border: "none",
+                                      borderRadius: "0",
+                                    }}
+                                  />
+                                </Form.Group>
+                              </Col>
+                            </Row>
+                          </Form.Group>
+                          <Button
+                            style={{
+                              marginTop: "30px",
+                              borderRadius: "0",
+                              backgroundColor: "#FE5C33",
+                              border: "0",
+                              padding: "15px 8rem 15px 8rem ",
+                            }}
+                          >
+                            Submit
+                          </Button>
+                        </Form.Group>
+                      </Form>
                     </Item>
                   </Grid>
                 </Grid>

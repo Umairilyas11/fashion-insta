@@ -6,7 +6,8 @@ import Imgcollege from "./components/Imgcollege";
 import Shop from "./components/Shop";
 import Contactus from "./components/Contactus";
 import Joinus from "./components/Joinus";
-// import ContactForm from "./Contactform";
+import Bottomblog from "./components/Bottomblog";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -20,8 +21,11 @@ function App() {
         <Imgcollege />
         <Shop />
         <Contactus />
-        {/* <ContactForm /> */}
         <Joinus />
+        <Bottomblog />
+        <footer>
+          <Footer />
+        </footer>
       </main>
     </>
   );

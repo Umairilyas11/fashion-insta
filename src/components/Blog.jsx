@@ -34,10 +34,7 @@ var cardData = [
 ];
 
 const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
   textAlign: "center",
-  color: theme.palette.text.secondary,
   backgroundColor: "transparent",
   boxShadow: "none",
 }));
@@ -45,7 +42,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const CardContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
-  gap: "30px",
+  gap: "70px",
   flexWrap: "wrap",
 }));
 

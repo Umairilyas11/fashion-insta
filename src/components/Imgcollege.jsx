@@ -1,6 +1,5 @@
-import React from "react";
 import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
+import { Box } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
@@ -52,10 +51,9 @@ function Imgcollege() {
                 The fashion service offers innovative and unique styles that go
                 beyond conventional fashion trends.
               </Typography>
-              <Box>
+              <Box className="ImageContainer">
                 <Grid
                   container
-                  spacing={0.5}
                   direction="row-reverse"
                   justifyContent="center"
                   alignItems="center"
@@ -89,7 +87,7 @@ function Imgcollege() {
                           objectFit: "cover",
                         }}
                       />
-                      <div style={{ padding: "15px" }}></div>
+                      <div style={{ paddingBottom: "25px" }}></div>
                       <img
                         // srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                         src="https://www.realmenrealstyle.com/wp-content/uploads/2023/04/Charcoal-Gray-Suit.jpg"
@@ -134,7 +132,7 @@ function Imgcollege() {
                           objectFit: "cover",
                         }}
                       />
-                      <div style={{ padding: "15px" }}></div>
+                      <div style={{ paddingBottom: "25px" }}></div>
                       <img
                         // srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                         src="https://media.blogto.com/articles/20180911-CourageMyLove16.jpg?w=2048&cmd=resize_then_crop&height=1365&quality=70"

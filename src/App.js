@@ -23,10 +23,10 @@ function App() {
         <Contactus />
         <Joinus />
         <Bottomblog />
-        <footer>
-          <Footer />
-        </footer>
       </main>
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 }

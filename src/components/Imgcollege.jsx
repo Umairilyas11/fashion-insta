@@ -6,7 +6,7 @@ import { Typography } from "@mui/material";
 
 const Item = styled(Paper)(({ theme }) => ({
   textAlign: "center",
-
+  maxWidth: "100%",
   backgroundColor: "transparent",
   boxShadow: "none",
 }));

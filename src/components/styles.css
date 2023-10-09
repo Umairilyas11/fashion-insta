@@ -1,0 +1,10 @@
+.custom-placeholder::placeholder {
+  color: white !important;
+}
+.custom-placeholder:focus {
+  background-color: transparent;
+  border: none;
+}
+.col-6 {
+  width: 10px;
+}

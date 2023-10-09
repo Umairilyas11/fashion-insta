@@ -6,11 +6,10 @@ import Grid from "@mui/material/Grid";
 import { Link } from "react-router-dom";
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: "center",
-  color: theme.palette.text.secondary,
+  backgroundColor: "transparent",
+  boxShadow: "none",
 }));
 
 function Subhead() {
@@ -25,13 +24,8 @@ function Subhead() {
       }}
     >
       <Grid container spacing={3}>
-        <Grid item xs={4}>
-          <Item
-            sx={{
-              backgroundColor: "transparent",
-              boxShadow: "none",
-            }}
-          >
+        <Grid item xs={3}>
+          <Item>
             <Typography
               variant="body1"
               sx={{
@@ -48,13 +42,8 @@ function Subhead() {
             </Typography>
           </Item>
         </Grid>
-        <Grid item xs={5}>
-          <Item
-            sx={{
-              backgroundColor: "transparent",
-              boxShadow: "none",
-            }}
-          >
+        <Grid item xs={6}>
+          <Item>
             <Typography
               variant="h5"
               sx={{
@@ -69,12 +58,7 @@ function Subhead() {
           </Item>
         </Grid>
         <Grid item xs={3}>
-          <Item
-            sx={{
-              backgroundColor: "transparent",
-              boxShadow: "none",
-            }}
-          >
+          <Item>
             <Link to="/Facebook" style={{ textDecoration: "none" }}>
               <Typography
                 sx={{

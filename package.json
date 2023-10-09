@@ -10,6 +10,9 @@
     "@mui/lab": "^5.0.0-alpha.147",
     "@mui/material": "^5.14.12",
     "@mui/styles": "^5.14.12",
+    "@progress/kendo-react-buttons": "^5.19.0",
+    "@progress/kendo-react-layout": "^5.19.0",
+    "@progress/kendo-theme-default": "^7.0.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -49,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-router-dom": "^5.3.3",
     "concurrently": "^8.2.1",
     "typescript": "^5.2.2"
   }

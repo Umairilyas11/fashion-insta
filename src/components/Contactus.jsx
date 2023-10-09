@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -12,10 +12,13 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
+import "./styles.css";
+import InputGroup from "react-bootstrap/InputGroup";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 
 const Item = styled(Paper)(({ theme }) => ({
   paddingTop: "7rem",
-  // textAlign: "center",
   color: theme.palette.text.secondary,
   backgroundColor: "transparent",
   boxShadow: "none",
@@ -107,8 +110,53 @@ var ContactData = [
     content: "London, United Kingdom",
   },
 ];
-
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 function Contactus() {
+  const [validated, setValidated] = useState(false);
+  const [customerName, setCustomerName] = useState("");
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    country: "",
+    gender: "",
+    message: "",
+  });
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Prevent the default form submission
+    const form = event.currentTarget;
+
+    if (form.checkValidity() === false) {
+      event.stopPropagation();
+    } else {
+      const firstName = formData.firstName;
+      setCustomerName(firstName);
+      handleOpenSnackbar();
+    }
+    setValidated(true);
+  };
+
+  const handleOpenSnackbar = () => {
+    setOpenSnackbar(true);
+  };
+
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar(false);
+  };
+
   const classes = useStyles();
   return (
     <>
@@ -154,45 +202,48 @@ function Contactus() {
                     <Item>
                       {ContactData.map((contact) => {
                         return (
-                          <>
-                            <div
-                              key={contact.id}
-                              className={classes.Contactcontainer}
-                            >
-                              <div className={classes.Icon}>{contact.icon}</div>
-                              <div className={classes.TextContainer}>
-                                <Typography
-                                  sx={{
-                                    fontFamily: "Inria Serif",
-                                    color: "black",
-                                    textAlign: "left",
-                                  }}
-                                  className={classes.Title}
-                                >
-                                  {contact.title}
-                                </Typography>
-                                <Typography
-                                  sx={{
-                                    fontFamily: "Inria Serif",
-                                    color: "black",
-                                    textAlign: "left",
-                                    fontWeight: "bold",
-                                    fontSize: "1.2rem",
-                                  }}
-                                  className={classes.content}
-                                >
-                                  {contact.content}
-                                </Typography>
-                              </div>
+                          <div
+                            key={contact.id}
+                            className={classes.Contactcontainer}
+                          >
+                            <div className={classes.Icon}>{contact.icon}</div>
+                            <div className={classes.TextContainer}>
+                              <Typography
+                                sx={{
+                                  fontFamily: "Inria Serif",
+                                  color: "black",
+                                  textAlign: "left",
+                                }}
+                                className={classes.Title}
+                              >
+                                {contact.title}
+                              </Typography>
+                              <Typography
+                                sx={{
+                                  fontFamily: "Inria Serif",
+                                  color: "black",
+                                  textAlign: "left",
+                                  fontWeight: "bold",
+                                  fontSize: "1.2rem",
+                                }}
+                                className={classes.content}
+                              >
+                                {contact.content}
+                              </Typography>
                             </div>
-                          </>
+                          </div>
                         );
                       })}
                     </Item>
                   </Grid>
                   <Grid xs>
                     <Item xs={6}>
-                      <Form className={classes.form}>
+                      <Form
+                        className={classes.form}
+                        noValidate
+                        validated={validated}
+                        onSubmit={handleSubmit}
+                      >
                         <Form.Group>
                           <Row className={classes.Rowcon}>
                             <Col className={classes.Colcon}>
@@ -205,10 +256,20 @@ function Contactus() {
                               >
                                 First Name
                               </Form.Label>
-                              <Form.Control
-                                placeholder="Enter your name here"
-                                className={classes.Placecon}
-                              />
+                              <InputGroup hasValidation>
+                                <Form.Control
+                                  placeholder="Enter your name here"
+                                  className={classes.Placecon}
+                                  required
+                                  id="firstName"
+                                  name="firstName"
+                                  value={formData.firstName}
+                                  onChange={handleInputChange}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                  Please enter your name.
+                                </Form.Control.Feedback>
+                              </InputGroup>
                             </Col>
                             <Col
                               style={{
@@ -218,23 +279,46 @@ function Contactus() {
                               <Form.Label className={classes.Labelcon}>
                                 Last Name
                               </Form.Label>
-                              <Form.Control
-                                placeholder="Enter your name here"
-                                className={classes.Placecon}
-                              />
+                              <InputGroup hasValidation>
+                                <Form.Control
+                                  placeholder="Enter your name here"
+                                  className={classes.Placecon}
+                                  required
+                                  id="lastName"
+                                  name="lastName"
+                                  value={formData.lastName}
+                                  onChange={handleInputChange}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                  Please enter your name.
+                                </Form.Control.Feedback>
+                              </InputGroup>
                             </Col>
                           </Row>
                         </Form.Group>
                         <Form.Group>
                           <Row className={classes.Rowcon}>
                             <Col className={classes.Colcon}>
-                              <Form.Label className={classes.Labelcon}>
+                              <Form.Label
+                                className={`${classes.Labelcon} label`}
+                              >
                                 Email Address
                               </Form.Label>
-                              <Form.Control
-                                placeholder="Enter your email here"
-                                className={classes.Placecon}
-                              />
+                              <InputGroup hasValidation>
+                                <Form.Control
+                                  type="email"
+                                  placeholder="Enter your email here"
+                                  className={classes.Placecon}
+                                  required
+                                  id="email"
+                                  name="email"
+                                  value={formData.email}
+                                  onChange={handleInputChange}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                  Please enter your email.
+                                </Form.Control.Feedback>
+                              </InputGroup>
                             </Col>
 
                             <Col
@@ -245,13 +329,27 @@ function Contactus() {
                               <Form.Label className={classes.Labelcon}>
                                 Phone Number
                               </Form.Label>
-                              <Form.Control
-                                placeholder="Enter your phone number here"
-                                style={{
-                                  textAlign: "left",
-                                }}
-                                className={classes.Placecon}
-                              />
+                              <InputGroup hasValidation>
+                                <Form.Control
+                                  type="tel"
+                                  placeholder="Enter your phone number here"
+                                  style={{
+                                    textAlign: "left",
+                                  }}
+                                  id="phoneNumber"
+                                  name="phoneNumber"
+                                  className={classes.Placecon}
+                                  required
+                                  pattern="[0-9]+"
+                                  maxLength="10"
+                                  minLength="10"
+                                  value={formData.phoneNumber}
+                                  onChange={handleInputChange}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                  Please enter your phone number.
+                                </Form.Control.Feedback>
+                              </InputGroup>
                             </Col>
                           </Row>
                         </Form.Group>
@@ -261,10 +359,21 @@ function Contactus() {
                               <Form.Label className={classes.Labelcon}>
                                 Country
                               </Form.Label>
-                              <Form.Control
-                                placeholder="Enter your country here"
-                                className={classes.Placecon}
-                              />
+                              <InputGroup hasValidation>
+                                <Form.Control
+                                  placeholder="Enter your country here"
+                                  className={classes.Placecon}
+                                  required
+                                  id="country"
+                                  name="country"
+                                  value={formData.country}
+                                  onChange={handleInputChange}
+                                />
+
+                                <Form.Control.Feedback type="invalid">
+                                  Please enter your country.
+                                </Form.Control.Feedback>
+                              </InputGroup>
                             </Col>
                             <Col
                               style={{
@@ -290,20 +399,26 @@ function Contactus() {
                                     paddingLeft: "12px",
                                   }}
                                 >
-                                  <Form.Check
-                                    inline
-                                    type="radio"
-                                    label="first radio"
-                                    name="formHorizontalRadios"
-                                    id="formHorizontalRadios1"
-                                  />
-                                  <Form.Check
-                                    inline
-                                    type="radio"
-                                    label="second radio"
-                                    name="formHorizontalRadios"
-                                    id="formHorizontalRadios2"
-                                  />
+                                  <InputGroup hasValidation>
+                                    <Form.Check
+                                      inline
+                                      type="radio"
+                                      label="Male"
+                                      name="gender"
+                                      id="male"
+                                      required
+                                      onChange={handleInputChange}
+                                    />
+                                    <Form.Check
+                                      inline
+                                      type="radio"
+                                      label="Female"
+                                      name="gender"
+                                      id="female"
+                                      required
+                                      onChange={handleInputChange}
+                                    />
+                                  </InputGroup>
                                 </Col>
                               </Form.Group>
                             </Col>
@@ -322,20 +437,32 @@ function Contactus() {
                                   <Form.Label className={classes.Labelcon}>
                                     Message
                                   </Form.Label>
-                                  <Form.Control
-                                    as="textarea"
-                                    rows={3}
-                                    placeholder="Tell us about your special requirments"
-                                    style={{
-                                      border: "none",
-                                      borderRadius: "0",
-                                    }}
-                                  />
+                                  <InputGroup hasValidation>
+                                    <Form.Control
+                                      as="textarea"
+                                      rows={3}
+                                      placeholder="Tell us about your special requirements"
+                                      style={{
+                                        border: "none",
+                                        borderRadius: "0",
+                                      }}
+                                      id="message"
+                                      name="message"
+                                      required
+                                      value={formData.message}
+                                      onChange={handleInputChange}
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                      Please write your message.
+                                    </Form.Control.Feedback>
+                                  </InputGroup>
                                 </Form.Group>
                               </Col>
                             </Row>
                           </Form.Group>
                           <Button
+                            type="submit"
+                            onClick={handleSubmit}
                             style={{
                               marginTop: "30px",
                               borderRadius: "0",
@@ -346,6 +473,15 @@ function Contactus() {
                           >
                             Submit
                           </Button>
+                          <Snackbar
+                            open={openSnackbar}
+                            autoHideDuration={5000}
+                            onClose={handleCloseSnackbar}
+                          >
+                            <Alert severity="success" sx={{ width: "100%" }}>
+                              Thank you, {customerName}
+                            </Alert>
+                          </Snackbar>
                         </Form.Group>
                       </Form>
                     </Item>

@@ -9,6 +9,7 @@ import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import IconButton from "@mui/material/IconButton";
 import { makeStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
+import "./styles.css";
 
 const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
@@ -87,22 +88,21 @@ function Footer() {
                         <Form>
                           <Form.Group
                             className="mb-3"
-                            controlId="exampleForm.ControlInput1"
                             style={{
                               display: "flex",
                               alignItems: "center",
                               border: "1px solid white",
                               borderRadius: "35px",
                               maxWidth: "25rem",
-                              "&::selection": {
-                                backgroundColor: "transparent",
-                              },
                             }}
                           >
                             <Form.Control
                               type="email"
                               placeholder="Enter email here"
-                              className={classes.Email}
+                              className={`custom-placeholder ${classes.Email}`}
+                              style={{
+                                color: "white",
+                              }}
                             />
 
                             <IconButton

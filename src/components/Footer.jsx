@@ -58,12 +58,19 @@ function Footer() {
         </Grid>
         <Grid item xs={11}>
           <Item>
-            <div>
-              <Box sx={{ flexGrow: 1 }}>
+            <Box>
+              <Box>
                 <Grid
                   container
                   spacing={3}
-                  sx={{ display: "flex", justifyContent: "center" }}
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    flexDirection: {
+                      xs: "column",
+                      md: "row",
+                    },
+                  }}
                 >
                   <Grid item xs={5}>
                     <Item>
@@ -327,7 +334,7 @@ function Footer() {
                   </Grid>
                 </Grid>
               </Box>
-            </div>
+            </Box>
           </Item>
         </Grid>
         <Grid item xs>

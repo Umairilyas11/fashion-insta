@@ -34,10 +34,8 @@ var cardData = [
 ];
 
 const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: "center",
-  color: theme.palette.text.secondary,
   backgroundColor: "transparent",
   boxShadow: "none",
 }));
@@ -86,9 +84,14 @@ function Joinus() {
               {cardData.map((card) => {
                 return (
                   <>
-                    <div
-                      style={{
+                    <Box
+                      sx={{
                         display: "flex",
+                        flexDirection: {
+                          xs: "column",
+                          md: "column",
+                          lg: "row",
+                        },
                         padding: "3rem",
                         gap: "2rem",
                         justifyContent: "center",
@@ -110,10 +113,13 @@ function Joinus() {
                           }}
                         />
                       </Card>
-                      <div
-                        style={{
+                      <Box
+                        sx={{
                           display: "flex",
-                          textAlign: "left",
+                          textAlign: {
+                            md: "center",
+                            lg: "left",
+                          },
                           flexDirection: "column",
                           color: "black",
                           maxWidth: "50%",
@@ -133,7 +139,10 @@ function Joinus() {
                           sx={{
                             backgroundColor: "#FE5C33",
                             color: "white",
-                            maxWidth: "20%",
+                            maxWidth: {
+                              md: "none",
+                              lg: "20%",
+                            },
                             "&:hover": {
                               background: "#D87057",
                             },
@@ -143,8 +152,8 @@ function Joinus() {
                         >
                           Read More
                         </Button>
-                      </div>
-                    </div>
+                      </Box>
+                    </Box>
                   </>
                 );
               })}

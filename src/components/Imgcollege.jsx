@@ -16,6 +16,8 @@ function Imgcollege() {
     <section
       style={{
         paddingTop: "100px",
+        maxWidth: "100%",
+        overflow: "hidden",
       }}
     >
       <Box sx={{ flexGrow: 1 }}>
@@ -51,12 +53,21 @@ function Imgcollege() {
                 The fashion service offers innovative and unique styles that go
                 beyond conventional fashion trends.
               </Typography>
-              <Box className="ImageContainer">
+
+              <Box>
                 <Grid
                   container
-                  direction="row-reverse"
+                  // direction="row"
                   justifyContent="center"
                   alignItems="center"
+                  sx={{
+                    display: "flex",
+                    flexDirection: {
+                      xs: "column",
+                      md: "column",
+                      lg: "row",
+                    },
+                  }}
                 >
                   <Grid item xs={1}>
                     <Item>

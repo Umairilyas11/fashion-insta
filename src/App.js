@@ -18,6 +18,7 @@ function App() {
       <main>
         <AppHero />
         <Blog />
+
         <Imgcollege />
         <Shop />
         <Contactus />

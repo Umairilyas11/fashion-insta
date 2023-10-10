@@ -6,6 +6,7 @@ import Divider from "@mui/material/Divider";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
@@ -72,7 +73,15 @@ function UpperNavbar() {
           <Item>
             <Toolbar>
               <div className={classes.container}>
-                <Box className={classes.navbar}>
+                <Box
+                  className={classes.navbar}
+                  sx={{
+                    display: {
+                      xs: "none",
+                      md: "block",
+                    },
+                  }}
+                >
                   <Box className={classes.navLinks}>
                     <Link
                       to="/home"
@@ -156,7 +165,19 @@ function UpperNavbar() {
           </Item>
         </Grid>
         <Grid item xs>
-          <Item></Item>
+          <Item>
+            <MenuIcon
+              sx={{
+                display: {
+                  sm: "flex",
+                  md: "none",
+                },
+                alignItems: "center",
+                height: "100%",
+                paddingLeft: "0",
+              }}
+            />
+          </Item>
         </Grid>
       </Grid>
 

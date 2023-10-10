@@ -82,20 +82,19 @@ function Bottomblog() {
               accusamus blanditiis quo! Quis laudantium commodi pariatur ipsa!
             </Typography>
 
-            <div
-              style={{
+            <Box
+              sx={{
                 display: "flex",
+                flexDirection: {
+                  xs: "column",
+                  lg: "row",
+                },
                 justifyContent: "center",
                 paddingTop: "2rem",
                 alignItems: "center",
               }}
             >
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
+              <div>
                 <Card
                   style={{
                     width: "25rem",
@@ -175,8 +174,6 @@ function Bottomblog() {
 
               <div
                 style={{
-                  display: "flex",
-                  flexDirection: "column",
                   marginLeft: "10px",
                 }}
               >
@@ -257,8 +254,6 @@ function Bottomblog() {
               </div>
               <div
                 style={{
-                  display: "flex",
-                  flexWrap: "wrap",
                   paddingLeft: "10px",
                 }}
               >
@@ -301,7 +296,7 @@ function Bottomblog() {
                   </div>
                 </Card>
               </div>
-            </div>
+            </Box>
           </Item>
         </Grid>
         <Grid item xs>

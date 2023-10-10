@@ -136,15 +136,27 @@ function Contactus() {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault();
     const form = event.currentTarget;
+    let isFormValid = true;
 
-    if (form.checkValidity() === false) {
+    // Check if any field in formData is empty
+    for (const key in formData) {
+      if (formData[key] === "") {
+        isFormValid = false;
+        break;
+      }
+    }
+
+    if (form.checkValidity() === false || !isFormValid) {
       event.stopPropagation();
     } else {
       const firstName = formData.firstName;
       setCustomerName(firstName);
       handleOpenSnackbar();
+      resetForm();
+
+      console.log("Form Data:", formData);
     }
     setValidated(true);
   };
@@ -155,6 +167,18 @@ function Contactus() {
 
   const handleCloseSnackbar = () => {
     setOpenSnackbar(false);
+  };
+  const resetForm = () => {
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phoneNumber: "",
+      country: "",
+      gender: "",
+      message: "",
+    });
+    setValidated(false);
   };
 
   const classes = useStyles();
@@ -195,8 +219,323 @@ function Contactus() {
                 molestiae id esse totam qui minus corrupti? Consequuntur vero
                 nihil quas beatae sit laudantium.
               </Typography>
+              <Box
+                sx={{
+                  display: {
+                    xs: "block",
+                    md: "block",
+                    lg: "none",
+                  },
+                }}
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: {
+                      xs: "column",
+                      md: "none",
+                    },
+                    justifyContent: "center",
+                    paddingBottom: "2rem",
+                  }}
+                >
+                  {ContactData.map((contact) => {
+                    return (
+                      <div
+                        key={contact.id}
+                        className={classes.Contactcontainer}
+                      >
+                        <div className={classes.Icon}>{contact.icon}</div>
+                        <div className={classes.TextContainer}>
+                          <Typography
+                            sx={{
+                              fontFamily: "Inria Serif",
+                              color: "black",
+                              textAlign: "left",
+                            }}
+                            className={classes.Title}
+                          >
+                            {contact.title}
+                          </Typography>
+                          <Typography
+                            sx={{
+                              fontFamily: "Inria Serif",
+                              color: "black",
+                              textAlign: "left",
+                              fontWeight: "bold",
+                              fontSize: "1.2rem",
+                            }}
+                            className={classes.content}
+                          >
+                            {contact.content}
+                          </Typography>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </Box>
+                <Box
+                  sx={{
+                    display: {
+                      xs: "block",
+                      md: "block",
+                      lg: "none",
+                    },
+                  }}
+                >
+                  <Form
+                    className={classes.form}
+                    noValidate
+                    validated={validated}
+                    onSubmit={handleSubmit}
+                  >
+                    <Form.Group>
+                      <Row className={classes.Rowcon}>
+                        <Col className={classes.Colcon}>
+                          <Form.Label
+                            style={{
+                              paddingLeft: "12px",
+                              marginTop: "5px",
+                            }}
+                            className={classes.Labelcon}
+                          >
+                            First Name
+                          </Form.Label>
+                          <InputGroup hasValidation>
+                            <Form.Control
+                              placeholder="Enter your name here"
+                              className={classes.Placecon}
+                              required
+                              id="firstName"
+                              name="firstName"
+                              value={formData.firstName}
+                              onChange={handleInputChange}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                              Please enter your name.
+                            </Form.Control.Feedback>
+                          </InputGroup>
+                        </Col>
+                        <Col
+                          style={{
+                            border: "1px solid black",
+                          }}
+                        >
+                          <Form.Label className={classes.Labelcon}>
+                            Last Name
+                          </Form.Label>
+                          <InputGroup hasValidation>
+                            <Form.Control
+                              placeholder="Enter your name here"
+                              className={classes.Placecon}
+                              required
+                              id="lastName"
+                              name="lastName"
+                              value={formData.lastName}
+                              onChange={handleInputChange}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                              Please enter your name.
+                            </Form.Control.Feedback>
+                          </InputGroup>
+                        </Col>
+                      </Row>
+                    </Form.Group>
+                    <Form.Group>
+                      <Row className={classes.Rowcon}>
+                        <Col className={classes.Colcon}>
+                          <Form.Label className={`${classes.Labelcon} label`}>
+                            Email Address
+                          </Form.Label>
+                          <InputGroup hasValidation>
+                            <Form.Control
+                              type="email"
+                              placeholder="Enter your email here"
+                              className={classes.Placecon}
+                              required
+                              id="email"
+                              name="email"
+                              value={formData.email}
+                              onChange={handleInputChange}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                              Please enter your email.
+                            </Form.Control.Feedback>
+                          </InputGroup>
+                        </Col>
 
-              <Box sx={{ flexGrow: 1 }}>
+                        <Col
+                          style={{
+                            border: "1px solid black",
+                          }}
+                        >
+                          <Form.Label className={classes.Labelcon}>
+                            Phone Number
+                          </Form.Label>
+                          <InputGroup hasValidation>
+                            <Form.Control
+                              type="tel"
+                              placeholder="Enter your phone number here"
+                              style={{
+                                textAlign: "left",
+                              }}
+                              id="phoneNumber"
+                              name="phoneNumber"
+                              className={classes.Placecon}
+                              required
+                              pattern="[0-9]+"
+                              maxLength="10"
+                              minLength="10"
+                              value={formData.phoneNumber}
+                              onChange={handleInputChange}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                              Please enter your phone number.
+                            </Form.Control.Feedback>
+                          </InputGroup>
+                        </Col>
+                      </Row>
+                    </Form.Group>
+                    <Form.Group>
+                      <Row className={classes.Rowcon}>
+                        <Col className={classes.Colcon}>
+                          <Form.Label className={classes.Labelcon}>
+                            Country
+                          </Form.Label>
+                          <InputGroup hasValidation>
+                            <Form.Control
+                              placeholder="Enter your country here"
+                              className={classes.Placecon}
+                              required
+                              id="country"
+                              name="country"
+                              value={formData.country}
+                              onChange={handleInputChange}
+                            />
+
+                            <Form.Control.Feedback type="invalid">
+                              Please enter your country.
+                            </Form.Control.Feedback>
+                          </InputGroup>
+                        </Col>
+                        <Col
+                          style={{
+                            border: "1px solid black",
+                          }}
+                        >
+                          <Form.Group
+                            className="mb-3"
+                            style={{
+                              display: "inline",
+                              justifyContent: "left",
+                              alignItems: "center",
+                              textAlign: "left",
+                              paddingLeft: "12px",
+                            }}
+                          >
+                            <Form.Label sm={1} className={classes.Labelcon}>
+                              Gender
+                            </Form.Label>
+                            <Col
+                              sm={10}
+                              style={{
+                                paddingLeft: "12px",
+                              }}
+                            >
+                              <InputGroup hasValidation>
+                                <Form.Check
+                                  inline
+                                  type="radio"
+                                  label="Male"
+                                  name="gender"
+                                  id="male"
+                                  required
+                                  onChange={handleInputChange}
+                                />
+                                <Form.Check
+                                  inline
+                                  type="radio"
+                                  label="Female"
+                                  name="gender"
+                                  id="female"
+                                  required
+                                  onChange={handleInputChange}
+                                />
+                              </InputGroup>
+                            </Col>
+                          </Form.Group>
+                        </Col>
+                      </Row>
+                      <Form.Group>
+                        <Row>
+                          <Col
+                            style={{
+                              border: "1px solid black",
+                            }}
+                          >
+                            <Form.Group className="mb-3">
+                              <Form.Label className={classes.Labelcon}>
+                                Message
+                              </Form.Label>
+                              <InputGroup hasValidation>
+                                <Form.Control
+                                  as="textarea"
+                                  rows={3}
+                                  placeholder="Tell us about your special requirements"
+                                  style={{
+                                    border: "none",
+                                    borderRadius: "0",
+                                  }}
+                                  id="message"
+                                  name="message"
+                                  required
+                                  value={formData.message}
+                                  onChange={handleInputChange}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                  Please write your message.
+                                </Form.Control.Feedback>
+                              </InputGroup>
+                            </Form.Group>
+                          </Col>
+                        </Row>
+                      </Form.Group>
+                      <Button
+                        type="submit"
+                        onClick={handleSubmit}
+                        style={{
+                          marginTop: "30px",
+                          borderRadius: "0",
+                          backgroundColor: "#FE5C33",
+                          border: "0",
+                          padding: "15px 8rem 15px 8rem ",
+                        }}
+                      >
+                        Submit
+                      </Button>
+                      <Snackbar
+                        open={openSnackbar}
+                        autoHideDuration={5000}
+                        onClose={handleCloseSnackbar}
+                      >
+                        <Alert severity="success" sx={{ width: "100%" }}>
+                          Thank you, {customerName}
+                        </Alert>
+                      </Snackbar>
+                    </Form.Group>
+                  </Form>
+                </Box>
+              </Box>
+              <Box
+                sx={{
+                  flexGrow: 1,
+                  display: {
+                    xs: "none",
+                    md: "none",
+                    lg: "flex",
+                  },
+                }}
+              >
                 <Grid container spacing={3}>
                   <Grid xs={4}>
                     <Item>
@@ -430,10 +769,7 @@ function Contactus() {
                                   border: "1px solid black",
                                 }}
                               >
-                                <Form.Group
-                                  className="mb-3"
-                                  controlId="exampleForm.ControlTextarea1"
-                                >
+                                <Form.Group className="mb-3">
                                   <Form.Label className={classes.Labelcon}>
                                     Message
                                   </Form.Label>

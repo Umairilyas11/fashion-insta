@@ -1,5 +1,6 @@
 const axios = require("axios");
 const fs = require("fs");
+const path = require("path");
 
 const imageUrls = [
   "https://media.gq.com/photos/609ee0fd85bdd1881580eef3/16:9/w_2560%2Cc_limit/shop-talk-raggedy-threads-lead-image.jpg",
@@ -10,6 +11,12 @@ const imageUrls = [
 const downloadImage = async (imageUrl, filename) => {
   try {
     const response = await axios.get(imageUrl, { responseType: "stream" });
+
+    const imagesFolder = path.dirname(filename);
+    if (!fs.existsSync(imagesFolder)) {
+      fs.mkdirSync(imagesFolder, { recursive: true });
+    }
+
     const writer = fs.createWriteStream(filename);
 
     response.data.pipe(writer);
